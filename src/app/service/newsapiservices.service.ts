@@ -2,9 +2,13 @@ import { Injectable } from '@angular/core';
 import{HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+interface mydata{
+  obj: Array<Object>
+}
 @Injectable({
   providedIn: 'root'
 })
+
 export class NewsapiservicesService {
 
   constructor(private http:HttpClient) { }
@@ -17,12 +21,12 @@ export class NewsapiservicesService {
   bitcoinApiurl= "https://newsapi.org/v2/everything?q=bitcoin&apiKey=43d504e1afea4b20be2f4b9c381fca4a";
 
   news():Observable<any>{
-    return this.http.get(this.newsApiUrl);
+    return this.http.get<mydata>(this.newsApiUrl);
   }
   technews():Observable<any>{
-    return this.http.get(this.techApiurl);
+    return this.http.get<mydata>(this.techApiurl);
   }
   bitcoinnews():Observable<any>{
-    return this.http.get(this.bitcoinApiurl);
+    return this.http.get<mydata>(this.bitcoinApiurl);
   }
 }
